@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 """RAG Knowledge Graph MCP — MEOK AI Labs. Vector search + knowledge graph + unified context retrieval."""
+
+import sys, os
+sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
+from auth_middleware import check_access
+
 import json, os, sqlite3, hashlib, math, re
 from datetime import datetime, timezone
 from typing import Optional
@@ -45,8 +50,12 @@ def _cosine_sim(a, b):
     return dot / (mag_a * mag_b) if mag_a * mag_b > 0 else 0.0
 
 @mcp.tool()
-def index_document(content: str, metadata: str = "", doc_id: str = "") -> str:
+def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: str = "") -> str:
     """Index a document for RAG retrieval. Generates embeddings and extracts entities."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if err := _rl(): return err
     doc_id = doc_id or hashlib.sha256(content.encode()).hexdigest()[:12]
     embedding = _simple_embed(content)
@@ -61,11 +70,15 @@ def index_document(content: str, metadata: str = "", doc_id: str = "") -> str:
         eid = hashlib.md5(w.encode()).hexdigest()[:8]
         conn.execute("INSERT OR IGNORE INTO entities VALUES (?,?,?,?)", (eid, w, "auto", "{}"))
     conn.commit(); conn.close()
-    return json.dumps({"doc_id": doc_id, "indexed": True, "chars": len(content), "entities_extracted": len(words), "embedding_dims": len(embedding)}, indent=2)
+    return {"doc_id": doc_id, "indexed": True, "chars": len(content), "entities_extracted": len(words), "embedding_dims": len(embedding)}
 
 @mcp.tool()
-def rag_query(query: str, top_k: int = 5, method: str = "hybrid") -> str:
+def rag_query(query: str, top_k: int = 5, method: str = "hybrid", api_key: str = "") -> str:
     """Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal)."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if err := _rl(): return err
     conn = _get_db()
     results = []
@@ -97,11 +110,15 @@ def rag_query(query: str, top_k: int = 5, method: str = "hybrid") -> str:
     
     conn.close()
     results.sort(key=lambda x: x.get("score", 0), reverse=True)
-    return json.dumps({"query": query, "method": method, "results": results[:top_k], "total_found": len(results)}, indent=2)
+    return {"query": query, "method": method, "results": results[:top_k], "total_found": len(results)}
 
 @mcp.tool()
-def add_graph_edge(source_name: str, target_name: str, relation: str, weight: float = 1.0) -> str:
+def add_graph_edge(source_name: str, target_name: str, relation: str, weight: float = 1.0, api_key: str = "") -> str:
     """Add a relationship to the knowledge graph."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if err := _rl(): return err
     conn = _get_db()
     src_id = hashlib.md5(source_name.encode()).hexdigest()[:8]
@@ -110,11 +127,15 @@ def add_graph_edge(source_name: str, target_name: str, relation: str, weight: fl
     conn.execute("INSERT OR IGNORE INTO entities VALUES (?,?,?,?)", (tgt_id, target_name, "manual", "{}"))
     conn.execute("INSERT INTO edges VALUES (?,?,?,?)", (src_id, tgt_id, relation, weight))
     conn.commit(); conn.close()
-    return json.dumps({"added": True, "source": source_name, "target": target_name, "relation": relation}, indent=2)
+    return {"added": True, "source": source_name, "target": target_name, "relation": relation}
 
 @mcp.tool()
-def graph_query(entity_name: str, depth: int = 2) -> str:
+def graph_query(entity_name: str, depth: int = 2, api_key: str = "") -> str:
     """Traverse the knowledge graph from an entity to find connections."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     if err := _rl(): return err
     conn = _get_db()
     visited = set()
@@ -131,17 +152,21 @@ def graph_query(entity_name: str, depth: int = 2) -> str:
             results.append({"from": name, "to": target, "relation": rel, "depth": d, "weight": weight})
             if d < depth: queue.append((target, d+1))
     conn.close()
-    return json.dumps({"entity": entity_name, "depth": depth, "connections": results, "nodes_visited": len(visited)}, indent=2)
+    return {"entity": entity_name, "depth": depth, "connections": results, "nodes_visited": len(visited)}
 
 @mcp.tool()
-def get_knowledge_stats() -> str:
+def get_knowledge_stats(api_key: str = "") -> str:
     """Get knowledge base statistics."""
+    allowed, msg, tier = check_access(api_key)
+    if not allowed:
+        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+
     conn = _get_db()
     docs = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
     entities = conn.execute("SELECT COUNT(*) FROM entities").fetchone()[0]
     edges = conn.execute("SELECT COUNT(*) FROM edges").fetchone()[0]
     conn.close()
-    return json.dumps({"documents": docs, "entities": entities, "edges": edges, "db_path": str(DB_PATH)}, indent=2)
+    return {"documents": docs, "entities": entities, "edges": edges, "db_path": str(DB_PATH)}
 
 if __name__ == "__main__":
     mcp.run()

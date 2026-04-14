@@ -1,1 +1,102 @@
-{"name":"rag-knowledge-graph-mcp","vendor":"MEOK AI Labs","homepage":"https://meok.ai","repository":"https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp","runtime":"python","entrypoint":"server.py"}
+{
+  "name": "rag-knowledge-graph-mcp",
+  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for everyone.",
+  "version": "1.0.0",
+  "tools": [
+    {
+      "name": "index_document",
+      "description": "Index a document for RAG retrieval. Generates embeddings and extracts entities.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          },
+          "doc_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "content"
+        ]
+      }
+    },
+    {
+      "name": "rag_query",
+      "description": "Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal).",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "top_k": {
+            "type": "integer"
+          },
+          "method": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ]
+      }
+    },
+    {
+      "name": "add_graph_edge",
+      "description": "Add a relationship to the knowledge graph.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "source_name": {
+            "type": "string"
+          },
+          "target_name": {
+            "type": "string"
+          },
+          "relation": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "source_name",
+          "target_name",
+          "relation"
+        ]
+      }
+    },
+    {
+      "name": "graph_query",
+      "description": "Traverse the knowledge graph from an entity to find connections.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "entity_name": {
+            "type": "string"
+          },
+          "depth": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "entity_name"
+        ]
+      }
+    },
+    {
+      "name": "get_knowledge_stats",
+      "description": "Get knowledge base statistics.",
+      "parameters": {
+        "type": "object",
+        "properties": {},
+        "required": []
+      }
+    }
+  ]
+}

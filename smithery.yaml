@@ -1,8 +1,58 @@
 name: rag-knowledge-graph-mcp
-description: MEOK AI Labs — rag knowledge graph
-vendor: MEOK AI Labs
-homepage: https://meok.ai
-repository: https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp
-license: MIT
-runtime: python
-entrypoint: server.py
+description: "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for\
+  \ everyone."
+version: 1.0.0
+tools:
+- name: index_document
+  description: Index a document for RAG retrieval. Generates embeddings and extracts
+    entities.
+  parameters:
+  - name: content
+    type: string
+    required: true
+  - name: metadata
+    type: string
+    required: false
+  - name: doc_id
+    type: string
+    required: false
+- name: rag_query
+  description: 'Query the knowledge base. Methods: vector (semantic), keyword (FTS5),
+    hybrid (both), graph (relationship traversal).'
+  parameters:
+  - name: query
+    type: string
+    required: true
+  - name: top_k
+    type: integer
+    required: false
+  - name: method
+    type: string
+    required: false
+- name: add_graph_edge
+  description: Add a relationship to the knowledge graph.
+  parameters:
+  - name: source_name
+    type: string
+    required: true
+  - name: target_name
+    type: string
+    required: true
+  - name: relation
+    type: string
+    required: true
+  - name: weight
+    type: number
+    required: false
+- name: graph_query
+  description: Traverse the knowledge graph from an entity to find connections.
+  parameters:
+  - name: entity_name
+    type: string
+    required: true
+  - name: depth
+    type: integer
+    required: false
+- name: get_knowledge_stats
+  description: Get knowledge base statistics.
+  parameters: []
