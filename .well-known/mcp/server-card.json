@@ -1,0 +1,56 @@
+{
+  "name": "rag-knowledge-graph",
+  "description": "MEOK AI Labs \u2014 RAG + Knowledge Graph. Hybrid retrieval: vector embeddings + graph relationships + hierarchical navigation.",
+  "version": "1.0.0",
+  "protocol_version": "2025-11-25",
+  "publisher": {
+    "name": "MEOK AI Labs",
+    "url": "https://meok.ai",
+    "email": "nicholas@meok.ai"
+  },
+  "repository": "https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp",
+  "license": "MIT",
+  "transport": [
+    "stdio",
+    "streamable-http"
+  ],
+  "authentication": {
+    "type": "api-key",
+    "free_tier": true,
+    "free_limit": "15 calls/day"
+  },
+  "tools": [
+    {
+      "name": "index_document",
+      "description": "Index a document for RAG retrieval. Generates embeddings and extracts entities."
+    },
+    {
+      "name": "rag_query",
+      "description": "Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal)."
+    },
+    {
+      "name": "add_graph_edge",
+      "description": "Add a relationship to the knowledge graph."
+    },
+    {
+      "name": "graph_query",
+      "description": "Traverse the knowledge graph from an entity to find connections."
+    },
+    {
+      "name": "get_knowledge_stats",
+      "description": "Get knowledge base statistics."
+    }
+  ],
+  "categories": [
+    "AI & Machine Learning"
+  ],
+  "pricing": {
+    "free": {
+      "calls_per_day": 15
+    },
+    "pro": {
+      "price": "$29/month",
+      "url": "https://meok.ai/pricing"
+    }
+  }
+}
