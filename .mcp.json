@@ -1,6 +1,6 @@
 {
   "name": "rag-knowledge-graph-mcp",
-  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 MEOK AI Labs \u2014 RAG + Knowledge Graph. Hybrid retrieval: vector embeddings + graph relationships + hi",
+  "description": "Rag Knowledge Graph automation via MCP. Includes index document, rag query, add graph edge. By MEOK AI Labs.",
   "version": "1.0.0",
   "tools": [
     {
