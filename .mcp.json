@@ -1,6 +1,6 @@
 {
   "name": "rag-knowledge-graph-mcp",
-  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 Sovereign AI tools for everyone.",
+  "description": "> **By [MEOK AI Labs](https://meok.ai)** \u2014 MEOK AI Labs \u2014 RAG + Knowledge Graph. Hybrid retrieval: vector embeddings + graph relationships + hi",
   "version": "1.0.0",
   "tools": [
     {
