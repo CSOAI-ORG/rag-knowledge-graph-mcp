@@ -63,7 +63,7 @@ def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: 
     conn.execute("INSERT OR REPLACE INTO documents VALUES (?,?,?,?,?)",
         (doc_id, content, metadata, json.dumps(embedding), datetime.now(timezone.utc).isoformat()))
     try: conn.execute("INSERT INTO doc_fts VALUES (?,?)", (content, metadata))
-    except: pass
+    except Exception as e: pass
     # Extract simple entities
     words = set(w.title() for w in re.findall(r'\b[A-Z][a-z]+\b', content) if len(w) > 2)
     for w in list(words)[:20]:
