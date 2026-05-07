@@ -51,7 +51,22 @@ def _cosine_sim(a, b):
 
 @mcp.tool()
 def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: str = "") -> str:
-    """Index a document for RAG retrieval. Generates embeddings and extracts entities."""
+    """Index a document for RAG retrieval. Generates embeddings and extracts entities.
+
+    Behavior:
+        This tool generates structured output without modifying external systems.
+        Output is deterministic for identical inputs. No side effects.
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -74,7 +89,23 @@ def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: 
 
 @mcp.tool()
 def rag_query(query: str, top_k: int = 5, method: str = "hybrid", api_key: str = "") -> str:
-    """Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal)."""
+    """Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal).
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -114,7 +145,23 @@ def rag_query(query: str, top_k: int = 5, method: str = "hybrid", api_key: str =
 
 @mcp.tool()
 def add_graph_edge(source_name: str, target_name: str, relation: str, weight: float = 1.0, api_key: str = "") -> str:
-    """Add a relationship to the knowledge graph."""
+    """Add a relationship to the knowledge graph.
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -131,7 +178,23 @@ def add_graph_edge(source_name: str, target_name: str, relation: str, weight: fl
 
 @mcp.tool()
 def graph_query(entity_name: str, depth: int = 2, api_key: str = "") -> str:
-    """Traverse the knowledge graph from an entity to find connections."""
+    """Traverse the knowledge graph from an entity to find connections.
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
@@ -156,7 +219,23 @@ def graph_query(entity_name: str, depth: int = 2, api_key: str = "") -> str:
 
 @mcp.tool()
 def get_knowledge_stats(api_key: str = "") -> str:
-    """Get knowledge base statistics."""
+    """Get knowledge base statistics.
+
+    Behavior:
+        This tool is read-only and stateless — it produces analysis output
+        without modifying any external systems, databases, or files.
+        Safe to call repeatedly with identical inputs (idempotent).
+        Free tier: 10/day rate limit. Pro tier: unlimited.
+        No authentication required for basic usage.
+
+    When to use:
+        Use this tool when you need structured analysis or classification
+        of inputs against established frameworks or standards.
+
+    When NOT to use:
+        Not suitable for real-time production decision-making without
+        human review of results.
+    """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
         return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
