@@ -66,6 +66,13 @@ def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: 
     When NOT to use:
         Not suitable for real-time production decision-making without
         human review of results.
+
+    Args:
+        content (str): The content to analyze or process.
+        metadata (str): The metadata to analyze or process.
+        doc_id (str): The doc id to analyze or process.
+        api_key (str): The api key to analyze or process.
+
     Behavioral Transparency:
         - Side Effects: This tool is read-only and produces no side effects. It does not modify
           any external state, databases, or files. All output is computed in-memory and returned
@@ -119,6 +126,13 @@ def rag_query(query: str, top_k: int = 5, method: str = "hybrid", api_key: str =
     When NOT to use:
         Not suitable for real-time production decision-making without
         human review of results.
+
+    Args:
+        query (str): The query to analyze or process.
+        top_k (int): The top k to analyze or process.
+        method (str): The method to analyze or process.
+        api_key (str): The api key to analyze or process.
+
     Behavioral Transparency:
         - Side Effects: This tool is read-only and produces no side effects. It does not modify
           any external state, databases, or files. All output is computed in-memory and returned
@@ -189,6 +203,14 @@ def add_graph_edge(source_name: str, target_name: str, relation: str, weight: fl
     When NOT to use:
         Not suitable for real-time production decision-making without
         human review of results.
+
+    Args:
+        source_name (str): The source name to analyze or process.
+        target_name (str): The target name to analyze or process.
+        relation (str): The relation to analyze or process.
+        weight (float): The weight to analyze or process.
+        api_key (str): The api key to analyze or process.
+
     Behavioral Transparency:
         - Side Effects: This tool is read-only and produces no side effects. It does not modify
           any external state, databases, or files. All output is computed in-memory and returned
@@ -236,6 +258,12 @@ def graph_query(entity_name: str, depth: int = 2, api_key: str = "") -> str:
     When NOT to use:
         Not suitable for real-time production decision-making without
         human review of results.
+
+    Args:
+        entity_name (str): The entity name to analyze or process.
+        depth (int): The depth to analyze or process.
+        api_key (str): The api key to analyze or process.
+
     Behavioral Transparency:
         - Side Effects: This tool is read-only and produces no side effects. It does not modify
           any external state, databases, or files. All output is computed in-memory and returned
@@ -291,6 +319,10 @@ def get_knowledge_stats(api_key: str = "") -> str:
     When NOT to use:
         Not suitable for real-time production decision-making without
         human review of results.
+
+    Args:
+        api_key (str): The api key to analyze or process.
+
     Behavioral Transparency:
         - Side Effects: This tool is read-only and produces no side effects. It does not modify
           any external state, databases, or files. All output is computed in-memory and returned
