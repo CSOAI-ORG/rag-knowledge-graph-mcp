@@ -1,3 +1,7 @@
+[![rag-knowledge-graph-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp/badges/score.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP_Registry-Published-green)](https://registry.modelcontextprotocol.io)
+[![PyPI](https://img.shields.io/pypi/v/rag-knowledge-graph-mcp)](https://pypi.org/project/rag-knowledge-graph-mcp/)
+
 [![rag-knowledge-graph-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp/badges/card.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp)
 
 <div align="center">
