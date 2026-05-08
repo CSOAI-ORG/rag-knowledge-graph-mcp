@@ -1,45 +1,59 @@
-[![rag-knowledge-graph-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp/badges/score.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp)
-[![MCP Registry](https://img.shields.io/badge/MCP_Registry-Published-green)](https://registry.modelcontextprotocol.io)
-[![PyPI](https://img.shields.io/pypi/v/rag-knowledge-graph-mcp)](https://pypi.org/project/rag-knowledge-graph-mcp/)
-
-[![rag-knowledge-graph-mcp MCP server](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp/badges/card.svg)](https://glama.ai/mcp/servers/CSOAI-ORG/rag-knowledge-graph-mcp)
-
 <div align="center">
 
-[![GitHub stars](https://img.shields.io/github/stars/CSOAI-ORG/rag-knowledge-graph-mcp)](https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp/stargazers)
+# Rag Knowledge Graph MCP
 
-# uragU knowledgeU graphU mcp
+**MCP server for rag knowledge graph mcp operations**
 
-**RAG Knowledge Graph MCP — MEOK AI Labs. Vector search + knowledge graph + unified context retrieval.**
-
-[![npm version](https://img.shields.io/npm/v/@meok-ai/rag-knowledge-graph-mcp)](https://www.npmjs.com/package/@meok-ai/rag-knowledge-graph-mcp)
+[![PyPI](https://img.shields.io/pypi/v/meok-rag-knowledge-graph-mcp)](https://pypi.org/project/meok-rag-knowledge-graph-mcp/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![MEOK AI Labs](https://img.shields.io/badge/MEOK_AI_Labs-255+_servers-purple)](https://meok.ai)
-
-[Installation](#installation) · [Docs](https://csoai.org) · [Report Bug](https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp/issues)
+[![MEOK AI Labs](https://img.shields.io/badge/MEOK_AI_Labs-MCP_Server-purple)](https://meok.ai)
 
 </div>
 
----
+## Overview
+
+Rag Knowledge Graph MCP provides AI-powered tools via the Model Context Protocol (MCP).
+
+## Tools
+
+| Tool | Description |
+|------|-------------|
+| `index_document` | Index a document for RAG retrieval. Generates embeddings and extracts entities. |
+| `rag_query` | Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (bo |
+| `add_graph_edge` | Add a relationship to the knowledge graph. |
+| `graph_query` | Traverse the knowledge graph from an entity to find connections. |
+| `get_knowledge_stats` | Get knowledge base statistics. |
 
 ## Installation
 
 ```bash
-pip install rag-knowledge-graph-mcp
-# or
-npm install -g @meok-ai/rag-knowledge-graph-mcp
+pip install meok-rag-knowledge-graph-mcp
 ```
 
-## Quick Start
+## Usage with Claude Desktop
 
-See the project repository for full documentation and examples.
+Add to your Claude Desktop MCP config (`claude_desktop_config.json`):
 
-## Enterprise Support
+```json
+{
+  "mcpServers": {
+    "rag-knowledge-graph": {
+      "command": "python",
+      "args": ["-m", "meok_rag_knowledge_graph_mcp.server"]
+    }
+  }
+}
+```
 
-- 📧 nicholas@csoai.org
-- 🌐 [CSOAI.org](https://csoai.org)
+## Usage with FastMCP
+
+```python
+from mcp.server.fastmcp import FastMCP
+
+# This server exposes 5 tool(s) via MCP
+# See server.py for full implementation
+```
 
 ## License
 
-MIT © [CSOAI](https://csoai.org)
-<!-- mcp-name: io.github.CSOAI-ORG/rag-knowledge-graph-mcp -->
+MIT © [MEOK AI Labs](https://meok.ai)
