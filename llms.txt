@@ -1,0 +1,32 @@
+# Rag Knowledge Graph MCP
+
+> RAG + Knowledge Graph MCP — hybrid retrieval with vector embeddings + graph traversal
+
+`rag-knowledge-graph-mcp` is a Model Context Protocol (MCP) server by MEOK AI Labs.
+
+## Install
+
+```bash
+pip install rag-knowledge-graph-mcp
+```
+
+Or run without installing:
+
+```bash
+uvx rag-knowledge-graph-mcp
+```
+
+## Tools
+
+- `index_document` — Index a document for RAG retrieval. Generates embeddings and extracts entities.
+- `rag_query` — Query the knowledge base. Methods: vector (semantic), keyword (FTS5), hybrid (both), graph (relationship traversal).
+- `add_graph_edge` — Add a relationship to the knowledge graph.
+- `graph_query` — Traverse the knowledge graph from an entity to find connections.
+- `get_knowledge_stats` — Get knowledge base statistics.
+
+## Links
+
+- Source: https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp
+- PyPI: https://pypi.org/project/rag-knowledge-graph-mcp/
+- MEOK AI Labs: https://meok.ai
+- Council of AI: https://councilof.ai
