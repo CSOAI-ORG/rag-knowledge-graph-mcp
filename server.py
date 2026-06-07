@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""RAG Knowledge Graph MCP — MEOK AI Labs. Vector search + knowledge graph + unified context retrieval."""
+"""
+RAG Knowledge Graph MCP — MEOK AI Labs. Vector search + knowledge graph + unified context retrieval."""
 
 import sys, os
-sys.path.insert(0, os.path.expanduser('~/clawd/meok-labs-engine/shared'))
 from auth_middleware import check_access
 
 import json, os, sqlite3, hashlib, math, re
@@ -90,7 +90,7 @@ def index_document(content: str, metadata: str = "", doc_id: str = "", api_key: 
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
 
     if err := _rl(): return err
     doc_id = doc_id or hashlib.sha256(content.encode()).hexdigest()[:12]
@@ -150,7 +150,7 @@ def rag_query(query: str, top_k: int = 5, method: str = "hybrid", api_key: str =
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
 
     if err := _rl(): return err
     conn = _get_db()
@@ -228,7 +228,7 @@ def add_graph_edge(source_name: str, target_name: str, relation: str, weight: fl
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
 
     if err := _rl(): return err
     conn = _get_db()
@@ -281,7 +281,7 @@ def graph_query(entity_name: str, depth: int = 2, api_key: str = "") -> str:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
 
     if err := _rl(): return err
     conn = _get_db()
@@ -340,7 +340,7 @@ def get_knowledge_stats(api_key: str = "") -> str:
     """
     allowed, msg, tier = check_access(api_key)
     if not allowed:
-        return {"error": msg, "upgrade_url": "https://meok.ai/pricing"}
+        return {"error": msg, "upgrade_url": "https://councilof.ai"}
 
     conn = _get_db()
     docs = conn.execute("SELECT COUNT(*) FROM documents").fetchone()[0]
@@ -349,5 +349,8 @@ def get_knowledge_stats(api_key: str = "") -> str:
     conn.close()
     return {"documents": docs, "entities": entities, "edges": edges, "db_path": str(DB_PATH)}
 
-if __name__ == "__main__":
+def main():
     mcp.run()
+
+if __name__ == '__main__':
+    main()

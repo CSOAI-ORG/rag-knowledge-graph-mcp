@@ -1,0 +1,28 @@
+{
+  "name": "rag-knowledge-graph-mcp",
+  "title": "Rag Knowledge Graph Mcp",
+  "description": "Rag Knowledge Graph automation via MCP. Includes index document, rag query, add graph edge. By MEOK AI Labs.",
+  "version": "1.0.6",
+  "homepage": "https://meok.ai",
+  "license": "MIT",
+  "transport": {
+    "type": "stdio"
+  },
+  "tools": [
+    {
+      "name": "index_document"
+    },
+    {
+      "name": "rag_query"
+    },
+    {
+      "name": "add_graph_edge"
+    },
+    {
+      "name": "graph_query"
+    },
+    {
+      "name": "get_knowledge_stats"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# rag-knowledge-graph-mcp - Auto-trigger Rules
+
+When the user asks about rag knowledge graph, use rag-knowledge-graph-mcp tools: index_document, rag_query, add_graph_edge, graph_query, get_knowledge_stats
+
+**MCP server for rag knowledge graph mcp operations**
+
+Install: `pip install rag-knowledge-graph-mcp`
+
+By MEOK AI Labs — MIT licensed.

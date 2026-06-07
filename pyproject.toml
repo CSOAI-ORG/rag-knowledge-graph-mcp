@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "rag-knowledge-graph-mcp"
-version = "1.0.4"
+version = "1.0.6"
 readme = "README.md"
 description = "Rag Knowledge Graph automation via MCP. Includes index document, rag query, add graph edge. By MEOK AI Labs."
 license = {file = "LICENSE"}
@@ -22,7 +22,7 @@ Homepage = "https://meok.ai"
 Repository = "https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp"
 [tool.hatch.build.targets.wheel]
 packages = ["."]
-only-include = ["server.py"]
+only-include = ["server.py", "auth_middleware.py"]
 
 [project.scripts]
 rag_knowledge_graph_mcp = "server:main"
