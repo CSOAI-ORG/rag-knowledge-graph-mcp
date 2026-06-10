@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 [project]
 name = "rag-knowledge-graph-mcp"
-version = "1.0.6"
+version = "1.0.7"
 readme = "README.md"
 description = "Rag Knowledge Graph automation via MCP. Includes index document, rag query, add graph edge. By MEOK AI Labs."
 license = {file = "LICENSE"}
