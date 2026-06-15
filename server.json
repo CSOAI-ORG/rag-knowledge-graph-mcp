@@ -4,9 +4,8 @@
   "version": "1.0.7",
   "description": "Rag Knowledge Graph MCP Server by MEOK AI Labs",
   "repository": {
-    "type": "git",
     "url": "https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp",
-    "source": "https://github.com/CSOAI-ORG/rag-knowledge-graph-mcp"
+    "source": "github"
   },
   "packages": [
     {
