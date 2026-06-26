@@ -113,3 +113,28 @@ Free tier: 10 calls/day per MCP. Pro tier (£79/mo): unlimited + cryptographical
 
 <!-- BUY-LADDER:END -->
 
+
+
+## Configuration
+
+Add to your `claude_desktop_config.json` (Claude Desktop) or your MCP client config:
+
+```json
+{
+  "mcpServers": {
+    "rag-knowledge-graph-mcp": {
+      "command": "uvx",
+      "args": ["rag-knowledge-graph-mcp"]
+    }
+  }
+}
+```
+
+Or: `pip install rag-knowledge-graph-mcp` then run the `rag-knowledge-graph-mcp` command (stdio transport).
+
+## Examples
+
+Once configured, ask your assistant, for example:
+- "Use `index_document` to …"
+- "Use `rag_query` to …"
+- "Use `add_graph_edge` to …"
