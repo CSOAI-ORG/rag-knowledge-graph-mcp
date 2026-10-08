@@ -11,7 +11,7 @@ import json, os, sqlite3, hashlib, math, re
 from datetime import datetime, timezone
 from typing import Optional
 from collections import defaultdict
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer as FastMCP  # mcp 2.x: FastMCP renamed MCPServer
 from pathlib import Path
 
 FREE_DAILY_LIMIT = 15
